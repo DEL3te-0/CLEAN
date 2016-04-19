@@ -36,5 +36,7 @@ Fichiers en file d'attente de rapport d'erreurs Windows du système | Fichiers u
 Fichiers journaux de la mise à niveau de Windows | Fichiers journaux de la mise à niveau de Windows contenant des informations permettant d'identifier et de résoudre les problèmes qui se produisent lors de l'installation, de la mise à niveau ou de la maintenance de Windows
 
 Le script créer le profil 1 pour le nettoyage.
-<hr>
+
+Version de Powershell : *Powershell V3*
+***
 <img src="img/Telegram.png" width="5%" height="5%" /> [Contactez moi!](https://telegram.me/ralevy)
