@@ -1,6 +1,6 @@
-#Powershell 3.0
-#Version 18/04/2016
-#Atao
+#Powershell : v3.0
+#Version : 18/04/2016
+#Author : Atao
 
 Write-Host " ####  #      ######   ##   #    # " -ForegroundColor Green
 Write-Host "#    # #      #       #  #  ##   # " -ForegroundColor Red
@@ -18,7 +18,7 @@ if ($os.Version -like $version)
     $chk = get-itemproperty -path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Explorer\VolumeCaches\Active Setup Temp Folders' -name StateFlags0001 -ErrorAction SilentlyContinue
     if ($chk.StateFlags0001 -eq 2)
     {
-    Write-Host "--> Version du système :" $os.version "`n" -ForegroundColor Green
+    Write-Host "--> Version du systï¿½me :" $os.version "`n" -ForegroundColor Green
     }
     Else
     {
@@ -70,10 +70,10 @@ if ($os.Version -like $version)
     #Gestion du temps
     $time_end = Get-Date -DisplayHint time
     $timer = ($time_end - $time_start)
-    Write-host "Durée d'exécution :" $timer.TotalSeconds "secondes - Soit" $timer.TotalMinutes "Minutes" -ForegroundColor Green
+    Write-host "Durï¿½e d'exï¿½cution :" $timer.TotalSeconds "secondes - Soit" $timer.TotalMinutes "Minutes" -ForegroundColor Green
 
 }
 Else
 {
-  Write-host "`nScript non-adapté à votre système..." -ForegroundColor yellow
+  Write-host "`nScript non-adaptï¿½ ï¿½ votre systï¿½me..." -ForegroundColor yellow
 }

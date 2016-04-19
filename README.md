@@ -9,7 +9,7 @@ Basé sur [ce script](https://gregramsey.net/2014/05/14/automating-the-disk-clea
 Le script fonctionne sur Windows 7 ([Windows 6.1](https://en.wikipedia.org/wiki/Windows_NT#Releases)).
 Il suffit de réadapter les clefs de registre pour les autres versions de Windows.
 
-[Pour Windows Serveur 2008 et suivants](https://technet.microsoft.com/fr-fr/library/ff630161%28v=ws.10%29.aspx) Il suffit d'ajouter l'outil...
+[Pour Windows Serveur 2008 et suivants](https://technet.microsoft.com/fr-fr/library/ff630161%28v=ws.10%29.aspx). Il suffit d'ajouter l'outil...
 
 Elements nettoyés | Description |
 :------------- | -------------
