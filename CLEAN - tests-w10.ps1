@@ -1,6 +1,6 @@
 #Powershell : v3.0
 #Version : 18/04/2016
-#Author : Atao
+#Author : Atao & Mayeul
 
 Write-Host " ####  #      ######   ##   #    # " -ForegroundColor Green
 Write-Host "#    # #      #       #  #  ##   # " -ForegroundColor Red
