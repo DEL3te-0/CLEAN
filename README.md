@@ -13,12 +13,12 @@ Il suffit de réadapter les clefs de registre pour les autres versions de Window
 
 |Elements nettoyés|Description
 |:-------------
-|Temporary Setup files | (Fonction plus utile désormais)
-|Fichiers programmes téléchargés | Programmes téléchargés automatiquement lors de la visite sur certaines pages
-|Fichiers Internet temporaires | Pages web stockées sur le disque dur
-|Debug Dump files|Fichiers créés par Windows
-|Anciens fichiers Chkdsk | Fichiers temporaires qui n'ont pas été modifiés depuis plus d'une semaine
-|Précedente(s) installation(s) de Windows | Fichiers provenant d'une installation précedente de Windows
+|Temporary Setup files | (Fonction plus utile désormais) |
+|Fichiers programmes téléchargés | Programmes téléchargés automatiquement lors de la visite sur certaines pages |
+|Fichiers Internet temporaires | Pages web stockées sur le disque dur |
+|Debug Dump files|Fichiers créés par Windows |
+|Anciens fichiers Chkdsk | Fichiers temporaires qui n'ont pas été modifiés depuis plus d'une semaine |
+|Précedente(s) installation(s) de Windows | Fichiers provenant d'une installation précedente de Windows |
 |Corbeille | Vide la corbeille
 |Fichiers de sauvegarde du Service Pack | Anciennes versions des fichiers qui ont été mis à jour par un Service Pack. Si supprimé, plus de désinstallation du Service Pack
 |Fichiers enregistrement de l'installation | Fichiers créées par Windows
