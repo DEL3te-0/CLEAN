@@ -41,4 +41,4 @@ Temporary Setup files | (Fonction plus utile désormais)
 
 Le script créer le profil 1 pour le nettoyage.
 <hr>
-<img src="img/Telegram.svg" width="5%" height="5%" /> [Contactez moi!](https://telegram.me/ralevy)
+<img src="img/Telegram.svg.jpg" width="5%" height="5%" /> [Contactez moi!](https://telegram.me/ralevy)
