@@ -37,4 +37,4 @@ Fichiers journaux de la mise à niveau de Windows | Fichiers journaux de la mise
 
 Le script créer le profil 1 pour le nettoyage.
 <hr>
-<img src="img/Telegram.svg.png" width="5%" height="5%" /> [Contactez moi!](https://telegram.me/ralevy)
+<img src="img/Telegram.png" width="5%" height="5%" /> [Contactez moi!](https://telegram.me/ralevy)
