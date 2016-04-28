@@ -1,9 +1,6 @@
 #Powershell : v3.0
-#Version : 18/04/2016
+#Version : 28/04/2016
 #Author : Atao & Mayeul
-
-$OutputEncoding = New-Object -typename System.Text.UTF8Encoding
-[Console]::OutputEncoding = New-Object -typename System.Text.UTF8Encoding
 
 Write-Host " ####  #      ######   ##   #    # " -ForegroundColor Green
 Write-Host "#    # #      #       #  #  ##   # " -ForegroundColor Red
@@ -92,7 +89,7 @@ Switch ($version){
         $chk = get-itemproperty -path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Explorer\VolumeCaches\Active Setup Temp Folders' -name StateFlags0001 -ErrorAction SilentlyContinue
         if ($chk.StateFlags0001 -eq 2)
         {
-        Write-Host "--> Version du système :" $os.version "`n" -ForegroundColor Green
+        Write-Host "--> Version du systÃ¨me :" $os.version "`n" -ForegroundColor Green
         cleaning
         }
         Else
@@ -126,7 +123,7 @@ Switch ($version){
     }
     *
     {
-        Write-host "`nScript non-adapte a�votre systeme..." -ForegroundColor yellow
+        Write-host "`nScript non-adapte a votre systeme..." -ForegroundColor yellow
         Exit-PSSession
     }
 
