@@ -15,8 +15,34 @@ Write-Host " ####  ###### ###### #    # #    # " -ForegroundColor Red
 
 $os = Get-WmiObject Win32_OperatingSystem
 
-if ($os.version -like "10.0*") {$version = "w10"}
-if ($os.version -like "6.0*") {$version = "w7"}
+if ($os.version -like "10.*") {$version = "w10"}
+if ($os.version -like "6.*") {$version = "w7"}
+
+function cleaning {
+    #FreeSpace before cleaning
+    $FreespaceBefore = (Get-WmiObject win32_logicaldisk -filter "DeviceID='C:'" | select Freespace).FreeSpace/1GB
+    #Gestion du temps
+    $time_start = Get-Date -DisplayHint time
+
+    cleanmgr /sagerun:1
+
+    do
+    {
+        Write-Host "Waiting for cleanmgr to complete. . ." -ForegroundColor Gray
+        start-sleep 5
+    }
+    while ((get-wmiobject win32_process | where-object {$_.processname -eq 'cleanmgr.exe'} | measure).count)
+
+    $FreespaceAfter = (Get-WmiObject win32_logicaldisk -filter "DeviceID='C:'" | select Freespace).FreeSpace/1GB
+
+    #Gain
+    $gain = $FreespaceBefore - $FreespaceAfter
+    Write-Host "`nGain d'espace : $gain Mo" -ForegroundColor Green
+    #Gestion du temps
+    $time_end = Get-Date -DisplayHint time
+    $timer = ($time_end - $time_start)
+    Write-host "Duree d'execution :" $timer.TotalSeconds "secondes - Soit" $timer.TotalMinutes "Minutes" -ForegroundColor Green
+    }
 
 Switch ($version){
     "w10"
@@ -24,7 +50,8 @@ Switch ($version){
         $chk = get-itemproperty -path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Explorer\VolumeCaches\Active Setup Temp Folders' -name StateFlags0001 -ErrorAction SilentlyContinue
         if ($chk.StateFlags0001 -eq 2)
         {
-        Write-Host "--> Version du système :" $os.version "`n" -ForegroundColor Green
+        Write-Host "--> Version du systeme :" $os.version "`n" -ForegroundColor Green
+        cleaning
         }
         Else
         {
@@ -55,6 +82,8 @@ Switch ($version){
             Set-ItemProperty -path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\VolumeCaches\Offline Pages Files' -name StateFlags0001 -type DWORD -Value 2
             Set-ItemProperty -path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\VolumeCaches\Windows Error Reporting Temp Files' -name StateFlags0001 -type DWORD -Value 2
             Write-Host "StateFlags0001 created!"
+
+            cleaning
         }
 
     }
@@ -64,6 +93,7 @@ Switch ($version){
         if ($chk.StateFlags0001 -eq 2)
         {
         Write-Host "--> Version du système :" $os.version "`n" -ForegroundColor Green
+        cleaning
         }
         Else
         {
@@ -90,36 +120,14 @@ Switch ($version){
             Set-ItemProperty -path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\VolumeCaches\Windows Upgrade Log Files' -name StateFlags0001 -type DWORD -Value 2
             Set-ItemProperty -path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\VolumeCaches\Offline Pages Files' -name StateFlags0001 -type DWORD -Value 2
             Write-Host "StateFlags0001 created!"
+
+            cleaning
         }
     }
     *
     {
-        Write-host "`nScript non-adapté à votre système..." -ForegroundColor yellow
+        Write-host "`nScript non-adapte a�votre systeme..." -ForegroundColor yellow
         Exit-PSSession
     }
 
 }
-   
-#FreeSpace before cleaning
-$FreespaceBefore = (Get-WmiObject win32_logicaldisk -filter "DeviceID='C:'" | select Freespace).FreeSpace/1GB
-#Gestion du temps
-$time_start = Get-Date -DisplayHint time
-
-cleanmgr /sagerun:1
-
-do
-{
-    Write-Host "Waiting for cleanmgr to complete. . ." -ForegroundColor Gray
-    start-sleep 5
-}
-while ((get-wmiobject win32_process | where-object {$_.processname -eq 'cleanmgr.exe'} | measure).count)
-
-$FreespaceAfter = (Get-WmiObject win32_logicaldisk -filter "DeviceID='C:'" | select Freespace).FreeSpace/1GB
-
-#Gain
-$gain = $FreespaceBefore - $FreespaceAfter
-Write-Host "`nGain d'espace : $gain Mo" -ForegroundColor Green
-#Gestion du temps
-$time_end = Get-Date -DisplayHint time
-$timer = ($time_end - $time_start)
-Write-host "Durée d'exécution :" $timer.TotalSeconds "secondes - Soit" $timer.TotalMinutes "Minutes" -ForegroundColor Green
