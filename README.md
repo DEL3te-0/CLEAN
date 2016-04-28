@@ -41,5 +41,9 @@ Fichiers journaux de la mise à niveau de Windows | Fichiers journaux de la mise
 Le script créer le profil 1 pour le nettoyage.
 
 Version de Powershell : *Powershell V3*
+
+![Image of Yaktocat]()
+<img src="img/demo.gif" />
+
 ***
 <img src="img/Telegram.png" width="5%" height="5%" /> [Contactez moi!](https://telegram.me/ralevy)
