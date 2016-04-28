@@ -13,7 +13,7 @@ Write-Host " ####  ###### ###### #    # #    # " -ForegroundColor Red
 $os = Get-WmiObject Win32_OperatingSystem
 
 if ($os.version -like "10.0*") {$version = "w10"}
-if ($os.version -like "6.0*") {$version = "w7"}
+if ($os.version -like "6.*") {$version = "w7"}
 
 Switch ($version){
     "w10"
@@ -54,9 +54,10 @@ Switch ($version){
             Write-Host "StateFlags0001 created!"
         }
     }
-    "*"
+    *
     {
-        Write-host "`nScript non-adapté à votre système..." -ForegroundColor yellow
+        Write-host "`nScript non-adapte à votre systeme..." -ForegroundColor yellow
+        Exit-PSSession
     }
 
 }
@@ -70,7 +71,7 @@ cleanmgr /sagerun:1
 
 do
 {
-    Write-Hosrt "Waiting for cleanmgr to complete. . ." -ForegroundColor Gray
+    Write-Host "Waiting for cleanmgr to complete. . ." -ForegroundColor Gray
     start-sleep 5
 }
 while ((get-wmiobject win32_process | where-object {$_.processname -eq 'cleanmgr.exe'} | measure).count)
