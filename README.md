@@ -6,10 +6,10 @@ Script d'automatisation de l'outil Nettoyage de disque de Windows, pour le netto
 
 Basé sur [ce script](https://gregramsey.net/2014/05/14/automating-the-disk-cleanup-utility/) de Greg Ramsey.
 
-Le script fonctionne sur Windows 7 et Windows 10 ([Windows 6.1](https://en.wikipedia.org/wiki/Windows_NT#Releases)) .
+Le script fonctionne sur Windows 7 et Windows 10 ([Versions 6 et 10](https://en.wikipedia.org/wiki/Windows_NT#Releases)) .
 Il suffit de réadapter les clefs de registre pour les autres versions de Windows.
 
-[Pour Windows Serveur 2008 et suivants](https://technet.microsoft.com/fr-fr/library/ff630161%28v=ws.10%29.aspx). Il suffit d'ajouter l'outil...
+[Pour Windows Serveur 2008 et suivants](https://technet.microsoft.com/fr-fr/library/ff630161%28v=ws.10%29.aspx). Il suffit d'ajouter l'outil cleanmgr...
 
 Elements nettoyés | Description | Version
 :------------- | ------------- | ---------
@@ -35,6 +35,7 @@ Fichiers archivés de rapport d'erreurs Windows par utilisateur | Fichiers utili
 Fichiers en file d'attente de rapport d'erreurs Windows par utilisateur | Fichiers utilisés pour des rapports d'erreurs et la recherche de solutions| 7 , 10
 Fichiers archivés de rapport d'erreurs Windows du système | Fichiers utilisés pour des rapports d'erreurs et la recherche de solutions| 7 , 10
 Fichiers en file d'attente de rapport d'erreurs Windows du système | Fichiers utilisés pour des rapports d'erreurs et la recherche de solutions| 7 , 10
+Fichiers Temp archivés de rapport d'erreurs Windows par utilisateur | Fichiers temporaires utilisés pour des rapports d'erreurs et la recherche de solutions| 7 , 10
 Fichiers journaux de la mise à niveau de Windows | Fichiers journaux de la mise à niveau de Windows contenant des informations permettant d'identifier et de résoudre les problèmes qui se produisent lors de l'installation, de la mise à niveau ou de la maintenance de Windows| 7 , 10
 
 Le script créer le profil 1 pour le nettoyage.
