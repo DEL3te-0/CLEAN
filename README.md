@@ -2,6 +2,11 @@
 # CLEAN
 ##### Clean nettoye Windows automatiquement
 
+- Version :1.1
+- Latest version : 28/04/2016
+- Author : Atao & Mayeul
+- Version de Powershell : Powershell V3
+
 Script d'automatisation de l'outil Nettoyage de disque de Windows, pour le nettoyage des postes clients (cleanmgr).
 
 Basé sur [ce script](https://gregramsey.net/2014/05/14/automating-the-disk-cleanup-utility/) de Greg Ramsey.
@@ -39,8 +44,6 @@ Fichiers Temp archivés de rapport d'erreurs Windows par utilisateur | Fichiers 
 Fichiers journaux de la mise à niveau de Windows | Fichiers journaux de la mise à niveau de Windows contenant des informations permettant d'identifier et de résoudre les problèmes qui se produisent lors de l'installation, de la mise à niveau ou de la maintenance de Windows| 7 , 10
 
 Le script créer le profil 1 pour le nettoyage.
-
-Version de Powershell : *Powershell V3*
 
 <img src="img/demo.gif" />
 
