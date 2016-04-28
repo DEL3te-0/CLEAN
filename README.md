@@ -42,7 +42,6 @@ Le script créer le profil 1 pour le nettoyage.
 
 Version de Powershell : *Powershell V3*
 
-![Image of Yaktocat]()
 <img src="img/demo.gif" />
 
 ***
