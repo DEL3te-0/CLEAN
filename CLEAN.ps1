@@ -2,6 +2,25 @@
 #Version : 28/04/2016
 #Author : Atao & Mayeul
 
+<#
+.SYNOPSIS
+    Clean nettoye Windows automatiquement
+    Script d'automatisation de l'outil Nettoyage de disque de Windows, pour le nettoyage des postes clients (cleanmgr).
+    Basé sur ce script de Greg Ramsey.
+.DESCRIPTION
+    Script d'automatisation de l'outil Nettoyage de disque de Windows, pour le nettoyage des postes clients (cleanmgr).
+    Basé sur ce script de Greg Ramsey (https://gregramsey.net/2014/05/14/automating-the-disk-cleanup-utility/).
+    Le script fonctionne sur Windows 7 et Windows 10 (Versions 6 & 10) . Il suffit de réadapter les clefs de registre pour les autres versions de Windows.
+    Pour Windows Serveur 2008 et suivants. Il suffit d'ajouter l'outil cleanmgr...
+.PARAMETER path
+    Emplacement du repertoire depuis lequel le script est lancé. Récupéré par le batch!
+.NOTES
+    Auteur : Atao & Mayeul
+    Project : https://github.com/atao/CLEAN
+.EXAMPLE
+    .\CLEAN.ps1
+#>
+
 Write-Host " ####  #      ######   ##   #    # " -ForegroundColor Green
 Write-Host "#    # #      #       #  #  ##   # " -ForegroundColor Red
 Write-Host "#      #      #####  #    # # #  # " -ForegroundColor Green

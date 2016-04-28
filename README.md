@@ -11,7 +11,7 @@ Il suffit de réadapter les clefs de registre pour les autres versions de Window
 
 [Pour Windows Serveur 2008 et suivants](https://technet.microsoft.com/fr-fr/library/ff630161%28v=ws.10%29.aspx). Il suffit d'ajouter l'outil cleanmgr...
 
-Elements nettoyés | Description | Version
+Elements nettoyés | Description | Versions
 :------------- | ------------- | ---------
 Temporary Setup files | (Fonction plus utile désormais) | 7 , 10
 Fichiers programmes téléchargés | Programmes téléchargés automatiquement lors de la visite sur certaines pages| 7 , 10
