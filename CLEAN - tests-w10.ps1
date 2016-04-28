@@ -2,6 +2,9 @@
 #Version : 18/04/2016
 #Author : Atao & Mayeul
 
+$OutputEncoding = New-Object -typename System.Text.UTF8Encoding
+[Console]::OutputEncoding = New-Object -typename System.Text.UTF8Encoding
+
 Write-Host " ####  #      ######   ##   #    # " -ForegroundColor Green
 Write-Host "#    # #      #       #  #  ##   # " -ForegroundColor Red
 Write-Host "#      #      #####  #    # # #  # " -ForegroundColor Green
@@ -13,7 +16,7 @@ Write-Host " ####  ###### ###### #    # #    # " -ForegroundColor Red
 $os = Get-WmiObject Win32_OperatingSystem
 
 if ($os.version -like "10.0*") {$version = "w10"}
-if ($os.version -like "6.*") {$version = "w7"}
+if ($os.version -like "6.0*") {$version = "w7"}
 
 Switch ($version){
     "w10"
@@ -56,7 +59,7 @@ Switch ($version){
     }
     *
     {
-        Write-host "`nScript non-adapte à votre systeme..." -ForegroundColor yellow
+        Write-host "`nScript non-adapté à votre système..." -ForegroundColor yellow
         Exit-PSSession
     }
 
