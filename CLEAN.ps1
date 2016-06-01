@@ -1,10 +1,10 @@
 #Powershell : v3.0
 #Version : 28/04/2016
-#Author : Atao & Mayeul
+#Authors : Atao & Mayeul
 
 <#
 .SYNOPSIS
-    Clean nettoye Windows automatiquement
+    Clean nettoye Windows automatiquement.
     Script d'automatisation de l'outil Nettoyage de disque de Windows, pour le nettoyage des postes clients (cleanmgr).
     Basé sur ce script de Greg Ramsey.
 .DESCRIPTION
@@ -36,7 +36,7 @@ if ($os.version -like "6.*") {$version = "w7"}
 
 function cleaning {
     #FreeSpace before cleaning
-    $FreespaceBefore = (Get-WmiObject win32_logicaldisk -filter "DeviceID='C:'" | select Freespace).FreeSpace/1GB
+    $FreespaceBefore = Get-WmiObject Win32_LogicalDisk -Filter "DeviceID='C:'" | Select-Object @{n='Free'; e={'{0:N2}' -f ($_.FreeSpace / 1GB) }}
     #Gestion du temps
     $time_start = Get-Date -DisplayHint time
     Write-Host "--> Version du systeme :" $os.version "`n" -ForegroundColor Green
@@ -49,11 +49,12 @@ function cleaning {
     }
     while ((get-wmiobject win32_process | where-object {$_.processname -eq 'cleanmgr.exe'} | measure).count)
 
-    $FreespaceAfter = (Get-WmiObject win32_logicaldisk -filter "DeviceID='C:'" | select Freespace).FreeSpace/1GB
+    $FreespaceAfter = Get-WmiObject Win32_LogicalDisk -Filter "DeviceID='C:'" | Select-Object @{n='Free'; e={'{0:N2}' -f ($_.FreeSpace / 1GB) }}
+    #Sans WMI
+    #Get-Volume | Select-Object DriveLetter, @{n='SizeRemaining'; e={'{0:N2}' -f ($_.SizeRemaining / 1MB) }} | Where-Object DriveLetter -Like "C"
 
     #Gain
-    $gain = $FreespaceBefore - $FreespaceAfter
-    Write-Host "`nGain d'espace : $gain Mo" -ForegroundColor Green
+    Write-Host "`nEspace disponible avant : $FreespaceBefore & après : $FreespaceAfter" -ForegroundColor Green
     #Gestion du temps
     $time_end = Get-Date -DisplayHint time
     $timer = ($time_end - $time_start)
@@ -140,7 +141,7 @@ Switch ($version){
     }
     *
     {
-        Write-host "`nScript non-adapte aÂ votre systeme..." -ForegroundColor yellow
+        Write-host "`nScript non-adapte a votre systeme..." -ForegroundColor yellow
         Exit-PSSession
     }
 
