@@ -9,18 +9,18 @@
     Basé sur ce script de Greg Ramsey.
 .DESCRIPTION
     Script d'automatisation de l'outil Nettoyage de disque de Windows, pour le nettoyage des postes clients (cleanmgr).
-    Basé sur ce script de Greg Ramsey (https://gregramsey.net/2014/05/14/automating-the-disk-cleanup-utility/).
-    Le script fonctionne sur Windows 7 et Windows 10 (Versions 6 & 10) . Il suffit de réadapter les clefs de registre pour les autres versions de Windows.
+    BasÃ© sur ce script de Greg Ramsey (https://gregramsey.net/2014/05/14/automating-the-disk-cleanup-utility/).
+    Le script fonctionne sur Windows 7 et Windows 10 (Versions 6 & 10) . Il suffit de rÃ©adapter les clefs de registre pour les autres versions de Windows.
     Pour Windows Serveur 2008 et suivants. Il suffit d'ajouter l'outil cleanmgr...
 .PARAMETER path
-    Emplacement du repertoire depuis lequel le script est lancé. Récupéré par le batch!
+    Emplacement du repertoire depuis lequel le script est lancé, Récupéré par le batch!
 .NOTES
     Auteur : Atao & Mayeul
     Project : https://github.com/atao/CLEAN
 .EXAMPLE
     .\CLEAN.ps1
 #>
-
+Clear-Host
 Write-Host " ####  #      ######   ##   #    # " -ForegroundColor Green
 Write-Host "#    # #      #       #  #  ##   # " -ForegroundColor Red
 Write-Host "#      #      #####  #    # # #  # " -ForegroundColor Green
@@ -29,18 +29,36 @@ Write-Host "#    # #      #      #    # #   ## " -ForegroundColor Green
 Write-Host " ####  ###### ###### #    # #    # " -ForegroundColor Red
 
 
-$os = Get-WmiObject Win32_OperatingSystem
+#Check OS
+$os = Get-WmiObject -Class Win32_OperatingSystem
+
+#Selection de l'OS
 
 if ($os.version -like "10.*") {$version = "w10"}
 if ($os.version -like "6.*") {$version = "w7"}
 
 function cleaning {
     #FreeSpace before cleaning
-    $FreespaceBefore = Get-WmiObject Win32_LogicalDisk -Filter "DeviceID='C:'" | Select-Object @{n='Free'; e={'{0:N2}' -f ($_.FreeSpace / 1GB) }}
+    $FreespaceBefore = Get-WmiObject Win32_LogicalDisk -Filter "DeviceID='C:'" | Select-Object @{n='Free'; e={'{0:N2}' -f ($_.FreeSpace / 1MB) }}
     #Gestion du temps
-    $time_start = Get-Date -DisplayHint time
-    Write-Host "--> Version du systeme :" $os.version "`n" -ForegroundColor Green
-    cleanmgr /sagerun:1
+    $time_start = Get-Date
+    Write-Host "--> Système :" $os.Caption "`n--> Version noyau :" $os.version "`n" -ForegroundColor Green
+    
+    Try{
+        cleanmgr /sagerun:1
+       }
+    catch
+       {
+        #Cleanmg pas disponible. Installation du rôle.
+        Write-Host -ForegroundColor DarkYellow "Il manque un rôle! Installation..."
+        Install-WindowsFeature Desktop-Experience
+        if ((Get-WindowsFeature Desktop-Experience | Select-Object -ExpandProperty installstate) -like "InstallPending")
+        {
+            Write-Host -ForegroundColor Yellow "Merci de rémarrer le poste."
+        }
+        Get-WindowsFeature Desktop-Experience | ft -AutoSize
+        break #Sortie du script
+       }
 
     do
     {
@@ -49,18 +67,20 @@ function cleaning {
     }
     while ((get-wmiobject win32_process | where-object {$_.processname -eq 'cleanmgr.exe'} | measure).count)
 
-    $FreespaceAfter = Get-WmiObject Win32_LogicalDisk -Filter "DeviceID='C:'" | Select-Object @{n='Free'; e={'{0:N2}' -f ($_.FreeSpace / 1GB) }}
+    $FreespaceAfter = Get-WmiObject Win32_LogicalDisk -Filter "DeviceID='C:'" | Select-Object @{n='Free'; e={'{0:N2}' -f ($_.FreeSpace / 1MB) }}
     #Sans WMI
     #Get-Volume | Select-Object DriveLetter, @{n='SizeRemaining'; e={'{0:N2}' -f ($_.SizeRemaining / 1MB) }} | Where-Object DriveLetter -Like "C"
 
     #Gain
     $gain = ($FreespaceBefore.size - $FreespaceAfter.size)
-    Write-Host "`nEspace disponible avant : $FreespaceBefore.size & après : $FreespaceAfter.size" -ForegroundColor Green
-    Write-Host "Gain d'espace : $gain"
+    Write-Host "`nGain d'espace : $gain MB" -ForegroundColor Green
     #Gestion du temps
-    $time_end = Get-Date -DisplayHint time
+    $time_end = Get-Date
     $timer = ($time_end - $time_start)
-    Write-host "Duree d'execution :" $timer.TotalSeconds "secondes - Soit" $timer.TotalMinutes "Minutes" -ForegroundColor Green
+    $tps = $timer.TotalSeconds
+    $tps = $tps | select @{n='Temps'; e={'{0:N1}' -f ($_) }}
+    $tps = $tps | select -ExpandProperty Temps
+    Write-host "Duree d'execution : $tps secondes" -ForegroundColor Green
     }
 
 Switch ($version){
