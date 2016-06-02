@@ -1,19 +1,19 @@
 #Powershell : v3.0
-#Version : 28/04/2016
+#Version : 02/06/2016
 #Authors : Atao & Mayeul
 
 <#
 .SYNOPSIS
     Clean nettoye Windows automatiquement.
     Script d'automatisation de l'outil Nettoyage de disque de Windows, pour le nettoyage des postes clients (cleanmgr).
-    Basé sur ce script de Greg Ramsey.
+    BasÃ© sur ce script de Greg Ramsey.
 .DESCRIPTION
     Script d'automatisation de l'outil Nettoyage de disque de Windows, pour le nettoyage des postes clients (cleanmgr).
-    Basé sur ce script de Greg Ramsey (https://gregramsey.net/2014/05/14/automating-the-disk-cleanup-utility/).
-    Le script fonctionne sur Windows 7 et Windows 10 (Versions 6 & 10) . Il suffit de réadapter les clefs de registre pour les autres versions de Windows.
+    BasÃ© sur ce script de Greg Ramsey (https://gregramsey.net/2014/05/14/automating-the-disk-cleanup-utility/).
+    Le script fonctionne sur Windows 7 et Windows 10 (Versions 6 & 10) . Il suffit de rÃ©adapter les clefs de registre pour les autres versions de Windows.
     Pour Windows Serveur 2008 et suivants. Il suffit d'ajouter l'outil cleanmgr...
 .PARAMETER path
-    Emplacement du repertoire depuis lequel le script est lancé. Récupéré par le batch!
+    Emplacement du repertoire depuis lequel le script est lancÃ©. RÃ©cupÃ©rÃ© par le batch!
 .NOTES
     Auteur : Atao & Mayeul
     Project : https://github.com/atao/CLEAN
@@ -54,7 +54,9 @@ function cleaning {
     #Get-Volume | Select-Object DriveLetter, @{n='SizeRemaining'; e={'{0:N2}' -f ($_.SizeRemaining / 1MB) }} | Where-Object DriveLetter -Like "C"
 
     #Gain
-    Write-Host "`nEspace disponible avant : $FreespaceBefore & après : $FreespaceAfter" -ForegroundColor Green
+    $gain = ($FreespaceBefore.size - $FreespaceAfter.size)
+    Write-Host "`nEspace disponible avant : $FreespaceBefore.size & aprÃ¨s : $FreespaceAfter.size" -ForegroundColor Green
+    Write-Host "Gain d'espace : $gain"
     #Gestion du temps
     $time_end = Get-Date -DisplayHint time
     $timer = ($time_end - $time_start)
@@ -141,7 +143,7 @@ Switch ($version){
     }
     *
     {
-        Write-host "`nScript non-adapte a votre systeme..." -ForegroundColor yellow
+        Write-host "`nScript non-adapte aÂ votre systeme..." -ForegroundColor yellow
         Exit-PSSession
     }
 
