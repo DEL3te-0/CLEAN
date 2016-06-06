@@ -9,7 +9,7 @@
     BasÃ© sur ce script de Greg Ramsey.
 .DESCRIPTION
     Script d'automatisation de l'outil Nettoyage de disque de Windows, pour le nettoyage des postes clients (cleanmgr).
-    BasÃƒÂ© sur ce script de Greg Ramsey (https://gregramsey.net/2014/05/14/automating-the-disk-cleanup-utility/).
+    Basé sur ce script de Greg Ramsey (https://gregramsey.net/2014/05/14/automating-the-disk-cleanup-utility/).
     Le script fonctionne sur Windows 7 et Windows 10 (Versions 6 & 10) . Il suffit de rÃƒÂ©adapter les clefs de registre pour les autres versions de Windows.
     Pour Windows Serveur 2008 et suivants. Il suffit d'ajouter l'outil cleanmgr...
 .PARAMETER path
@@ -38,23 +38,23 @@ if ($os.version -like "10.*") {$version = "w10"}
 if ($os.version -like "6.*") {$version = "w7"}
 
 function cleaning {
-    #FreeSpace before cleaning
-    $FreespaceBefore = Get-WmiObject Win32_LogicalDisk -Filter "DeviceID='C:'" | Select-Object @{n='Free'; e={'{0:N2}' -f ($_.FreeSpace / 1MB) }}
     #Gestion du temps
     $time_start = Get-Date
-    Write-Host "--> SystÃ¨me :" $os.Caption "`n--> Version noyau :" $os.version "`n" -ForegroundColor Green
-    
+    Write-Host "[INFO] Système :" $os.Caption "`n[INFO] Version noyau :" $os.version "`n" -ForegroundColor Green
+
+    #FreeSpace before cleaning
+    $FreespaceBefore = Get-WmiObject Win32_LogicalDisk -Filter "DeviceID='C:'" | Select-Object FreeSpace
     Try{
         cleanmgr /sagerun:1
        }
     catch
        {
-        #Cleanmg pas disponible. Installation du rÃ´le.
-        Write-Host -ForegroundColor DarkYellow "Il manque un rÃ´le! Installation..."
+        #Cleanmg pas disponible. Installation du rôle.
+        Write-Host -ForegroundColor DarkYellow "[ERREUR] Il manque un rôle! Installation..."
         Install-WindowsFeature Desktop-Experience
         if ((Get-WindowsFeature Desktop-Experience | Select-Object -ExpandProperty installstate) -like "InstallPending")
         {
-            Write-Host -ForegroundColor Yellow "Merci de rÃ©marrer le poste."
+            Write-Host -ForegroundColor Yellow "[OK] Merci de redémarrer le poste."
         }
         Get-WindowsFeature Desktop-Experience | ft -AutoSize
         break #Sortie du script
@@ -62,25 +62,27 @@ function cleaning {
 
     do
     {
-        Write-Host "Waiting for cleanmgr to complete. . ." -ForegroundColor Gray
+        Write-Host "[INFO] Waiting for cleanmgr to complète. . ." -ForegroundColor Gray
         start-sleep 5
     }
     while ((get-wmiobject win32_process | where-object {$_.processname -eq 'cleanmgr.exe'} | measure).count)
 
-    $FreespaceAfter = Get-WmiObject Win32_LogicalDisk -Filter "DeviceID='C:'" | Select-Object @{n='Free'; e={'{0:N2}' -f ($_.FreeSpace / 1MB) }}
+    $FreespaceAfter = Get-WmiObject Win32_LogicalDisk -Filter "DeviceID='C:'" | Select-Object FreeSpace
     #Sans WMI
     #Get-Volume | Select-Object DriveLetter, @{n='SizeRemaining'; e={'{0:N2}' -f ($_.SizeRemaining / 1MB) }} | Where-Object DriveLetter -Like "C"
 
     #Gain
-    $gain = ($FreespaceBefore.size - $FreespaceAfter.size)
-    Write-Host "`nGain d'espace : $gain MB" -ForegroundColor Green
+    $g = ($FreespaceBefore.FreeSpace - $FreespaceAfter.FreeSpace)
+    $gain = $g | Select @{n="Gaindespace" ; e={'{0:N2}' -f ($_ / 1MB) }}
+    $gain = $gain.Gaindespace
+    Write-Host "`n[INFO] Gain d'espace : $gain MB (Sur $env:SystemDrive)" -ForegroundColor Green
     #Gestion du temps
     $time_end = Get-Date
     $timer = ($time_end - $time_start)
     $tps = $timer.TotalSeconds
     $tps = $tps | select @{n='Temps'; e={'{0:N1}' -f ($_) }}
     $tps = $tps | select -ExpandProperty Temps
-    Write-host "Duree d'execution : $tps secondes" -ForegroundColor Green
+    Write-host "[INFO] Duree d'éxecution : $tps secondes" -ForegroundColor Green
     }
 
 Switch ($version){
