@@ -1,5 +1,5 @@
 #Powershell : v3.0
-#Version : 02/06/2016
+#Version : 06/06/2016
 #Authors : Atao & Mayeul
 
 <#
@@ -71,11 +71,12 @@ function cleaning {
     #Sans WMI
     #Get-Volume | Select-Object DriveLetter, @{n='SizeRemaining'; e={'{0:N2}' -f ($_.SizeRemaining / 1MB) }} | Where-Object DriveLetter -Like "C"
 
-    #Gain
+    #Gain d'espace
     $g = ($FreespaceBefore.FreeSpace - $FreespaceAfter.FreeSpace)
     $gain = $g | Select @{n="Gaindespace" ; e={'{0:N2}' -f ($_ / 1MB) }}
     $gain = $gain.Gaindespace
     Write-Host "`n[INFO] Gain d'espace : $gain MB (Sur $env:SystemDrive)" -ForegroundColor Green
+
     #Gestion du temps
     $time_end = Get-Date
     $timer = ($time_end - $time_start)
