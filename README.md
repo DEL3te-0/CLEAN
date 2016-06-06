@@ -1,5 +1,5 @@
 <img style="align="middle"" src="img/256px-Recycle001.svg.png">
-# CLEAN
+# CLEAN - Nettoyage de disques
 ##### Clean nettoye Windows automatiquement
 
 - Version :1.1
