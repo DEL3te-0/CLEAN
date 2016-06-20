@@ -3,7 +3,7 @@
 ##### Clean nettoye Windows automatiquement
 
 - Version :1.1
-- Latest version : 28/04/2016
+- Latest version : 06/06/2016
 - Author : Atao & Mayeul
 - Version de Powershell : Powershell V3
 - Site : (https://atao.github.io/CLEAN/)
@@ -16,6 +16,7 @@ Le script fonctionne sur Windows 7 et Windows 10 ([Versions 6 et 10](https://en.
 Il suffit de réadapter les clefs de registre pour les autres versions de Windows.
 
 [Pour Windows Serveur 2008 et suivants](https://technet.microsoft.com/fr-fr/library/ff630161%28v=ws.10%29.aspx). Il suffit d'ajouter l'outil cleanmgr...
+Il s'agit d'un rôle : Desktop-Experience (Windows Expérience), le script l'installera automatiquement mais cela nécessitera un reboot.
 
 Elements nettoyés | Description | Versions
 :------------- | ------------- | ---------
