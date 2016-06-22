@@ -1,4 +1,4 @@
-![alt text][logo]
+![logo]
 
 # CLEAN - Nettoyage de disques
 ##### Clean nettoye Windows automatiquement
@@ -48,10 +48,10 @@ Fichiers journaux de la mise à niveau de Windows | Fichiers journaux de la mise
 
 Le script créer le profil 1 pour le nettoyage.
 
-![alt text][demo]
+![demo]
 
 ***
 [Contactez moi sur Telegram!](https://telegram.me/ralevy)
 
-[logo]: img/256px-Recycle001.svg.png "Logo"
-[demo]: img/demo.gif "Demo"
+[logo]: https://raw.githubusercontent.com/atao/CLEAN/master/img/256px-Recycle001.svg.png "Logo"
+[demo]: https://raw.githubusercontent.com/atao/CLEAN/master/img/demo.gif "Demo"
