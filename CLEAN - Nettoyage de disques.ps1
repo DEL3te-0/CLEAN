@@ -9,7 +9,7 @@
     BasÃ© sur ce script de Greg Ramsey.
 .DESCRIPTION
     Script d'automatisation de l'outil Nettoyage de disque de Windows, pour le nettoyage des postes clients (cleanmgr).
-    Basé sur ce script de Greg Ramsey (https://gregramsey.net/2014/05/14/automating-the-disk-cleanup-utility/).
+    Basï¿½ sur ce script de Greg Ramsey (https://gregramsey.net/2014/05/14/automating-the-disk-cleanup-utility/).
     Le script fonctionne sur Windows 7 et Windows 10 (Versions 6 & 10) . Il suffit de rÃƒÂ©adapter les clefs de registre pour les autres versions de Windows.
     Pour Windows Serveur 2008 et suivants. Il suffit d'ajouter l'outil cleanmgr...
 .PARAMETER path
@@ -42,7 +42,7 @@ function cleaning {
     #Gestion du temps
     $time_start = Get-Date
 
-    Write-Host "[INFO] Nom :" $sys.Name "`n[INFO] Domaine :" $sys.Domain "`n[INFO] Système :" $os.Caption"" -ForegroundColor Green
+    Write-Host "[INFO] Nom :" $sys.Name "`n[INFO] Domaine :" $sys.Domain "`n[INFO] SystÃ¨me :" $os.Caption"" -ForegroundColor Green
 
     #FreeSpace before cleaning
     $FreespaceBefore = Get-WmiObject Win32_LogicalDisk -Filter "DeviceID='C:'" | Select-Object FreeSpace
@@ -51,12 +51,12 @@ function cleaning {
        }
     catch
        {
-        #Cleanmg pas disponible. Installation du rôle.
-        Write-Host -ForegroundColor DarkYellow "[ERREUR] Il manque un rôle! Installation..."
+        #Cleanmg pas disponible. Installation du rï¿½le.
+        Write-Host -ForegroundColor DarkYellow "[ERREUR] Il manque un rÃ´le! Installation..."
         Install-WindowsFeature Desktop-Experience
         if ((Get-WindowsFeature Desktop-Experience | Select-Object -ExpandProperty installstate) -like "InstallPending")
         {
-            Write-Host -ForegroundColor Yellow "[OK] Merci de redémarrer le poste."
+            Write-Host -ForegroundColor Yellow "[OK] Merci de redÃ©marrer le poste."
         }
         Get-WindowsFeature Desktop-Experience | ft -AutoSize
         break #Sortie du script
@@ -64,7 +64,7 @@ function cleaning {
 
     do
     {
-        Write-Host "[INFO] Waiting for cleanmgr to complète. . ." -ForegroundColor Gray
+        Write-Host "[INFO] Waiting for cleanmgr to complÃ¨te. . ." -ForegroundColor Gray
         start-sleep 5
     }
     while ((get-wmiobject win32_process | where-object {$_.processname -eq 'cleanmgr.exe'} | measure).count)
@@ -85,7 +85,7 @@ function cleaning {
     $tps = $timer.TotalSeconds
     $tps = $tps | select @{n='Temps'; e={'{0:N1}' -f ($_) }}
     $tps = $tps | select -ExpandProperty Temps
-    Write-host "[INFO] Duree d'éxecution : $tps secondes" -ForegroundColor Green
+    Write-host "[INFO] Duree d'Ã©xecution : $tps secondes" -ForegroundColor Green
     }
 
 Switch ($version){
@@ -168,7 +168,7 @@ Switch ($version){
     }
     *
     {
-        Write-host "`nScript non-adapte aÂ votre systeme..." -ForegroundColor yellow
+        Write-host "`nScript non-adapte aÂ votre systÃ¨me..." -ForegroundColor yellow
         Exit-PSSession
     }
 
