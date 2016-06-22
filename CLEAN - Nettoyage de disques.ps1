@@ -1,5 +1,5 @@
 #Powershell : v3.0
-#Version : 06/06/2016
+#Version : 22/06/2016
 #Authors : Atao & Mayeul
 
 <#
@@ -31,6 +31,7 @@ Write-Host " ####  ###### ###### #    # #    # " -ForegroundColor Red
 
 #Check OS
 $os = Get-WmiObject -Class Win32_OperatingSystem
+$sys = Get-WmiObject -Class Win32_Computersystem
 
 #Selection de l'OS
 
@@ -40,7 +41,8 @@ if ($os.version -like "6.*") {$version = "w7"}
 function cleaning {
     #Gestion du temps
     $time_start = Get-Date
-    Write-Host "[INFO] Système :" $os.Caption "`n[INFO] Version noyau :" $os.version "`n" -ForegroundColor Green
+
+    Write-Host "[INFO] Nom :" $sys.Name "`n[INFO] Domaine :" $sys.Domain "`n[INFO] Système :" $os.Caption"" -ForegroundColor Green
 
     #FreeSpace before cleaning
     $FreespaceBefore = Get-WmiObject Win32_LogicalDisk -Filter "DeviceID='C:'" | Select-Object FreeSpace
