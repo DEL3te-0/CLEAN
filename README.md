@@ -3,7 +3,7 @@
 # CLEAN - Nettoyage de disques
 ##### Clean nettoye Windows automatiquement
 
-- Version :1.2
+- Version :1.3
 - Latest version : 22/06/2016
 - Author : Atao & Mayeul
 - Version de Powershell : Powershell V3
@@ -49,7 +49,6 @@ Fichiers journaux de la mise à niveau de Windows | Fichiers journaux de la mise
 Le script créer le profil 1 pour le nettoyage.
 
 ![demo]
-
 ***
 [Contactez moi sur Telegram!](https://telegram.me/ralevy)
 
