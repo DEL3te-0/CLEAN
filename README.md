@@ -50,7 +50,5 @@ Le script créer le profil 1 pour le nettoyage.
 
 ![demo]
 ***
-[Contactez moi sur Telegram!](https://telegram.me/ralevy)
-
 [logo]: https://raw.githubusercontent.com/atao/CLEAN/master/img/256px-Recycle001.svg.png "Logo"
 [demo]: https://raw.githubusercontent.com/atao/CLEAN/master/img/demo.gif "Demo"
