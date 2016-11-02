@@ -65,6 +65,7 @@ $flag = 'StateFlags0001'
 
 #Messages
 $msgKeyOK = "Les clés ont été ajouté au registre."
+$msgSupport = "`nSystem not supported..."
 
 #Check OS
 $os = Get-WmiObject -Class Win32_OperatingSystem
@@ -214,7 +215,7 @@ Switch ($version){
     }
     *
     {
-        Write-host "`nSystem not supported..." -ForegroundColor yellow
+        Write-host $msgSupport -ForegroundColor yellow
         Exit-PSSession
     }
 
