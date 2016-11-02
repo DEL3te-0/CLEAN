@@ -3,8 +3,7 @@
 # CLEAN - Nettoyage de disques
 ##### Clean nettoye Windows automatiquement
 
-- Version :1.3
-- Latest version : 22/06/2016
+- Latest version : 02/11/2016
 - Author : Atao & Mayeul
 - Version de Powershell : Powershell V3
 - Site : (https://atao.github.io/CLEAN/)
@@ -16,8 +15,9 @@ Basé sur [ce script](https://gregramsey.net/2014/05/14/automating-the-disk-clea
 Le script fonctionne sur Windows 7 et Windows 10 ([Versions 6 et 10](https://en.wikipedia.org/wiki/Windows_NT#Releases)) .
 Il suffit de réadapter les clefs de registre pour les autres versions de Windows.
 
-[Pour Windows Serveur 2008 et suivants](https://technet.microsoft.com/fr-fr/library/ff630161%28v=ws.10%29.aspx). Il suffit d'ajouter l'outil cleanmgr...
-Il s'agit d'un rôle : Desktop-Experience (Windows Expérience), le script l'installera automatiquement mais cela nécessitera un reboot.
+[Pour Windows Serveur 2008 et suivants](https://technet.microsoft.com/fr-fr/library/ff630161%28v=ws.10%29.aspx). L'outils cleanmgr est nécessaire... Il faut donc ajouter le rôle Desktop-Experience (Windows Expérience) disponible sur toutes les versions de Windows. Le script l'installera automatiquement mais cela nécessitera un reboot.
+
+PS : Une fois le reboot effectué, relancer le script.
 
 Elements nettoyés | Description | Versions
 :------------- | ------------- | ---------
