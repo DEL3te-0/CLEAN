@@ -1,5 +1,5 @@
 #Powershell : v3.0
-#Version : 22/06/2016
+#Version : 02/11/2016
 #Authors : Atao & Mayeul
 
 <#
@@ -20,6 +20,7 @@
 .EXAMPLE
     .\CLEAN.ps1
 #>
+
 Clear-Host
 Write-Host " ####  #      ######   ##   #    # " -ForegroundColor Green
 Write-Host "#    # #      #       #  #  ##   # " -ForegroundColor Red
@@ -61,6 +62,9 @@ $MemoryDumpFiles = 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Vol
 
 #Profile
 $flag = 'StateFlags0001'
+
+#Messages
+$msgKeyOK = "Les clés ont été ajouté au registre."
 
 #Check OS
 $os = Get-WmiObject -Class Win32_OperatingSystem
@@ -158,7 +162,7 @@ Switch ($version){
               $chk = Get-ItemProperty -path $WindowsUpgradeLogFiles -ErrorAction SilentlyContinue ; if ($? -eq $false) {Set-ItemProperty $WindowsUpgradeLogFiles -name $flag -type DWORD -Value 2}
               $chk = Get-ItemProperty -path $OfflinePagesFiles -ErrorAction SilentlyContinue ; if ($? -eq $false) {Set-ItemProperty $OfflinePagesFiles -name $flag -type DWORD -Value 2}
               $chk = Get-ItemProperty -path $WindowsErrorReportingTempFiles -ErrorAction SilentlyContinue ; if ($? -eq $false) {Set-ItemProperty $WindowsErrorReportingTempFiles -name $flag -type DWORD -Value 2}
-              Write-Host "$flag created!"
+              Write-Host $msgKeyOK
             }
             catch{
               Write-Warning -Message "$($_.Exception.Message)"
@@ -178,29 +182,29 @@ Switch ($version){
         Else
         {
             Try{
-              Set-ItemProperty -path $ActiveSetupTempFolders -name $flag -type DWORD -Value 2
-              Set-ItemProperty -path $DownloadedProgramFiles -name $flag -type DWORD -Value 2
-              Set-ItemProperty -path $InternetCacheFiles -name $flag -type DWORD -Value 2
-              Set-ItemProperty -path $MemoryDumpFiles -name $flag -type DWORD -Value 2
-              Set-ItemProperty -path $OldChkDskFiles -name $flag -type DWORD -Value 2
-              Set-ItemProperty -path $PreviousInstallations -name $flag -type DWORD -Value 2
-              Set-ItemProperty -path $RecycleBin -name $flag -type DWORD -Value 2
-              Set-ItemProperty -path $ServicePackCleanup -name $flag -type DWORD -Value 2
-              Set-ItemProperty -path $SetupLogFiles -name $flag -type DWORD -Value 2
-              Set-ItemProperty -path $Systemerrormemorydumpfiles -name $flag -type DWORD -Value 2
-              Set-ItemProperty -path $Systemerrorminidumpfiles -name $flag -type DWORD -Value 2
-              Set-ItemProperty -path $TemporaryFiles -name $flag -type DWORD -Value 2
-              Set-ItemProperty -path $TemporarySetupFiles -name $flag -type DWORD -Value 2
-              Set-ItemProperty -path $ThumbnailCache -name $flag -type DWORD -Value 2
-              Set-ItemProperty -path $UpdateCleanup -name $flag -type DWORD -Value 2
-              Set-ItemProperty -path $UpgradeDiscardedFiles -name $flag -type DWORD -Value 2
-              Set-ItemProperty -path $WindowsErrorReportingArchiveFiles -name $flag -type DWORD -Value 2
-              Set-ItemProperty -path $WindowsErrorReportingSystemQueueFiles -name $flag -type DWORD -Value 2
-              Set-ItemProperty -path $WindowsErrorReportingArchiveFiles -name $flag -type DWORD -Value 2
-              Set-ItemProperty -path $WindowsErrorReportingQueueFiles -name $flag -type DWORD -Value 2
-              Set-ItemProperty -path $WindowsUpgradeLogFiles -name $flag -type DWORD -Value 2
-              Set-ItemProperty -path $OfflinePagesFiles -name $flag -type DWORD -Value 2
-              Write-Host "$flag created!"
+              $chk = Get-ItemProperty -path $ActiveSetupTempFolders -ErrorAction SilentlyContinue ; if ($? -eq $false) {Set-ItemProperty -path $ActiveSetupTempFolders -name $flag -type DWORD -Value 2}
+              $chk = Get-ItemProperty -path $DownloadedProgramFiles -ErrorAction SilentlyContinue ; if ($? -eq $false) {Set-ItemProperty -path $DownloadedProgramFiles -name $flag -type DWORD -Value 2}
+              $chk = Get-ItemProperty -path $InternetCacheFiles -ErrorAction SilentlyContinue ; if ($? -eq $false) {Set-ItemProperty -path $InternetCacheFiles -name $flag -type DWORD -Value 2}
+              $chk = Get-ItemProperty -path $MemoryDumpFiles -ErrorAction SilentlyContinue ; if ($? -eq $false) {Set-ItemProperty -path $MemoryDumpFiles -name $flag -type DWORD -Value 2}
+              $chk = Get-ItemProperty -path $OldChkDskFiles -ErrorAction SilentlyContinue ; if ($? -eq $false) {Set-ItemProperty -path $OldChkDskFiles -name $flag -type DWORD -Value 2}
+              $chk = Get-ItemProperty -path $PreviousInstallations -ErrorAction SilentlyContinue ; if ($? -eq $false) {Set-ItemProperty -path $PreviousInstallations -name $flag -type DWORD -Value 2}
+              $chk = Get-ItemProperty -path $RecycleBin -ErrorAction SilentlyContinue ; if ($? -eq $false) {Set-ItemProperty -path $RecycleBin -name $flag -type DWORD -Value 2}
+              $chk = Get-ItemProperty -path $ServicePackCleanup -ErrorAction SilentlyContinue ; if ($? -eq $false) {Set-ItemProperty -path $ServicePackCleanup -name $flag -type DWORD -Value 2}
+              $chk = Get-ItemProperty -path $SetupLogFiles -ErrorAction SilentlyContinue ; if ($? -eq $false) {Set-ItemProperty -path $SetupLogFiles -name $flag -type DWORD -Value 2}
+              $chk = Get-ItemProperty -path $Systemerrormemorydumpfiles -ErrorAction SilentlyContinue ; if ($? -eq $false) {Set-ItemProperty -path $Systemerrormemorydumpfiles -name $flag -type DWORD -Value 2}
+              $chk = Get-ItemProperty -path $Systemerrorminidumpfiles -ErrorAction SilentlyContinue ; if ($? -eq $false) {Set-ItemProperty -path $Systemerrorminidumpfiles -name $flag -type DWORD -Value 2}
+              $chk = Get-ItemProperty -path $TemporaryFiles -ErrorAction SilentlyContinue ; if ($? -eq $false) {Set-ItemProperty -path $TemporaryFiles -name $flag -type DWORD -Value 2}
+              $chk = Get-ItemProperty -path $TemporarySetupFiles -ErrorAction SilentlyContinue ; if ($? -eq $false) {Set-ItemProperty -path $TemporarySetupFiles -name $flag -type DWORD -Value 2}
+              $chk = Get-ItemProperty -path $ThumbnailCache -ErrorAction SilentlyContinue ; if ($? -eq $false) {Set-ItemProperty -path $ThumbnailCache -name $flag -type DWORD -Value 2}
+              $chk = Get-ItemProperty -path $UpdateCleanup -ErrorAction SilentlyContinue ; if ($? -eq $false) {Set-ItemProperty -path $UpdateCleanup -name $flag -type DWORD -Value 2}
+              $chk = Get-ItemProperty -path $UpgradeDiscardedFiles -ErrorAction SilentlyContinue ; if ($? -eq $false) {Set-ItemProperty -path $UpgradeDiscardedFiles -name $flag -type DWORD -Value 2}
+              $chk = Get-ItemProperty -path $WindowsErrorReportingArchiveFiles -ErrorAction SilentlyContinue ; if ($? -eq $false) {Set-ItemProperty -path $WindowsErrorReportingArchiveFiles -name $flag -type DWORD -Value 2}
+              $chk = Get-ItemProperty -path $WindowsErrorReportingSystemQueueFiles -ErrorAction SilentlyContinue ; if ($? -eq $false) {Set-ItemProperty -path $WindowsErrorReportingSystemQueueFiles -name $flag -type DWORD -Value 2}
+              $chk = Get-ItemProperty -path $WindowsErrorReportingArchiveFiles -ErrorAction SilentlyContinue ; if ($? -eq $false) {Set-ItemProperty -path $WindowsErrorReportingArchiveFiles -name $flag -type DWORD -Value 2}
+              $chk = Get-ItemProperty -path $WindowsErrorReportingQueueFiles -ErrorAction SilentlyContinue ; if ($? -eq $false) {Set-ItemProperty -path $WindowsErrorReportingQueueFiles -name $flag -type DWORD -Value 2}
+              $chk = Get-ItemProperty -path $WindowsUpgradeLogFiles -ErrorAction SilentlyContinue ; if ($? -eq $false) {Set-ItemProperty -path $WindowsUpgradeLogFiles -name $flag -type DWORD -Value 2}
+              $chk = Get-ItemProperty -path $OfflinePagesFiles -ErrorAction SilentlyContinue ; if ($? -eq $false) {Set-ItemProperty -path $OfflinePagesFiles -name $flag -type DWORD -Value 2}
+              Write-Host $msgKeyOK
             }
             catch{
               Write-Warning -Message "$($_.Exception.Message)"
@@ -210,7 +214,7 @@ Switch ($version){
     }
     *
     {
-        Write-host "`nScript non-adapte à votre système..." -ForegroundColor yellow
+        Write-host "`nSystem not supported..." -ForegroundColor yellow
         Exit-PSSession
     }
 
