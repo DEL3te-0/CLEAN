@@ -29,7 +29,6 @@ Write-Host "#      #      #      ###### #  # # " -ForegroundColor Red
 Write-Host "#    # #      #      #    # #   ## " -ForegroundColor Green
 Write-Host " ####  ###### ###### #    # #    # " -ForegroundColor Red
 
-
 #Reg
 #('HKLM(.)*\\)
 $ActiveSetupTempFolders = 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Explorer\VolumeCaches\Active Setup Temp Folders'
