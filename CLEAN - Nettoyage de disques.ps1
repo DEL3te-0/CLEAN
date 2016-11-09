@@ -9,7 +9,7 @@
     Basé sur ce script de Greg Ramsey.
 .DESCRIPTION
     Script d'automatisation de l'outil Nettoyage de disque de Windows, pour le nettoyage des postes clients (cleanmgr).
-    Bas� sur ce script de Greg Ramsey (https://gregramsey.net/2014/05/14/automating-the-disk-cleanup-utility/).
+    Basé sur ce script de Greg Ramsey (https://gregramsey.net/2014/05/14/automating-the-disk-cleanup-utility/).
     Le script fonctionne sur Windows 7 et Windows 10 (Versions 6 & 10) . Il suffit de rÃ©adapter les clefs de registre pour les autres versions de Windows.
     Pour Windows Serveur 2008 et suivants. Il suffit d'ajouter l'outil cleanmgr...
 .PARAMETER path
