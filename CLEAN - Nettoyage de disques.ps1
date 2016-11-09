@@ -6,14 +6,14 @@
 .SYNOPSIS
     Clean nettoye Windows automatiquement.
     Script d'automatisation de l'outil Nettoyage de disque de Windows, pour le nettoyage des postes clients (cleanmgr).
-    Basé sur ce script de Greg Ramsey.
+    BasÃ© sur ce script de Greg Ramsey.
 .DESCRIPTION
     Script d'automatisation de l'outil Nettoyage de disque de Windows, pour le nettoyage des postes clients (cleanmgr).
-    Basé sur ce script de Greg Ramsey (https://gregramsey.net/2014/05/14/automating-the-disk-cleanup-utility/).
+    Basï¿½ sur ce script de Greg Ramsey (https://gregramsey.net/2014/05/14/automating-the-disk-cleanup-utility/).
     Le script fonctionne sur Windows 7 et Windows 10 (Versions 6 & 10) . Il suffit de rÃƒÂ©adapter les clefs de registre pour les autres versions de Windows.
     Pour Windows Serveur 2008 et suivants. Il suffit d'ajouter l'outil cleanmgr...
 .PARAMETER path
-    Emplacement du repertoire depuis lequel le script est lancé, Récupéré par le batch!
+    Emplacement du repertoire depuis lequel le script est lancÃ©, RÃ©cupÃ©rÃ© par le batch!
 .NOTES
     Auteur : Atao & Mayeul
     Project : https://github.com/atao/CLEAN
@@ -63,7 +63,7 @@ $MemoryDumpFiles = 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Vol
 $flag = 'StateFlags0001'
 
 #Messages
-$msgKeyOK = "Les clées ont été ajouté au registre."
+$msgKeyOK = "Les clÃ©es ont Ã©tÃ© ajoutÃ© au registre."
 $msgSupport = "`nSystem not supported..."
 
 #Check OS
