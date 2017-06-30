@@ -3,7 +3,7 @@
 # CLEAN - Nettoyage de disques
 ##### Clean nettoye Windows automatiquement
 
-- Latest version : 09/11/2016
+- Latest version : 30/06/2017
 - Author : Atao & Mayeul
 - Version de Powershell : Powershell V3
 - Site : (https://atao.github.io/CLEAN/)
